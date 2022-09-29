@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/employees", employeesRouter);
+app.use("/api/employees", employeesRouter);
 
 const main = async () => {
   await mongoose.connect(mongoUrl);
