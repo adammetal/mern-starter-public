@@ -6,10 +6,26 @@ const fetchEmployees = () => {
   return fetch("/api/employees").then((res) => res.json());
 };
 
+const deleteEmployee = (id) => {
+  return fetch(`/api/employees/${id}`, { method: "DELETE" }).then((res) =>
+    res.json()
+  );
+};
+
 const Employees = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+
+  const handleDelete = (id) => {
+    deleteEmployee(id).catch((err) => {
+      console.log(err);
+    });
+
+    setData((employees) => {
+      return employees.filter((employee) => employee._id !== id);
+    });
+  };
 
   useEffect(() => {
     fetchEmployees()
@@ -54,6 +70,9 @@ const Employees = () => {
               <td>{employee.position}</td>
               <td>
                 <Link to={`/update/${employee._id}`}>Update</Link>
+                <button onClick={() => handleDelete(employee._id)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
