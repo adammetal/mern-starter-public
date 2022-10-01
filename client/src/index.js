@@ -5,15 +5,15 @@ import {
   RouterProvider
 } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import Employees from './Employees';
-import EmployeeCreator from './EmployeeCreator';
-import EmployeeUpdater from './EmployeeUpdater';
+import EmployeeList from './Pages/EmployeeList';
+import EmployeeCreator from './Pages/EmployeeCreator';
+import EmployeeUpdater from './Pages/EmployeeUpdater';
 
 import './index.css';
 
 const router = createBrowserRouter([
   {
-    path: '/', element: <Employees />
+    path: '/', element: <EmployeeList />
   },
   {
     path: '/create', element: <EmployeeCreator />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Loading from "./Loading";
+import Loading from "../Components/Loading";
 
 const fetchEmployees = () => {
   return fetch("/api/employees").then((res) => res.json());
@@ -12,7 +12,7 @@ const deleteEmployee = (id) => {
   );
 };
 
-const Employees = () => {
+const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -82,4 +82,4 @@ const Employees = () => {
   );
 };
 
-export default Employees;
+export default EmployeeList;
