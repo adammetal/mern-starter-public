@@ -62,6 +62,7 @@ const EmployeeUpdater = () => {
         employee={employee}
         onSave={handleUpdateEmployee}
         disabled={updateLoading}
+        onCancel={() => navigate("/")}
       />
     </div>
   );

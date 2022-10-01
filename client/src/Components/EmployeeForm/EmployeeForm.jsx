@@ -1,4 +1,9 @@
-const EmployeeForm = ({ onSave, disabled, employee }) => {
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import Button from "@mui/material/Button";
+
+const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -14,46 +19,60 @@ const EmployeeForm = ({ onSave, disabled, employee }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <Box
+      sx={{ margin: "2rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}
+      component="form"
+      onSubmit={onSubmit}
+    >
       {employee && (
         <input type="hidden" name="_id" defaultValue={employee._id} />
       )}
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          required
-          id="name"
-          name="name"
-          type="text"
+
+      <FormControl fullWidth>
+        <TextField
           defaultValue={employee ? employee.name : null}
+          name="name"
+          id="name"
+          label="Name"
+          variant="outlined"
         />
-      </div>
-      <div>
-        <label htmlFor="level">Level</label>
-        <input
-          required
-          id="level"
-          name="level"
-          type="text"
+      </FormControl>
+
+      <FormControl fullWidth>
+        <TextField
           defaultValue={employee ? employee.level : null}
+          name="level"
+          id="level"
+          label="Level"
+          variant="outlined"
         />
-      </div>
-      <div>
-        <label htmlFor="position">Position</label>
-        <input
-          required
-          id="position"
-          name="position"
-          type="text"
+      </FormControl>
+
+      <FormControl fullWidth>
+        <TextField
           defaultValue={employee ? employee.position : null}
+          name="position"
+          id="position"
+          label="Position"
+          variant="outlined"
         />
-      </div>
+      </FormControl>
+
       <div>
-        <button type="submit" disabled={disabled}>
+        <Button
+          sx={{ marginRight: "1rem" }}
+          variant="contained"
+          type="submit"
+          disabled={disabled}
+        >
           {employee ? "Update Employee" : "Create Employee"}
-        </button>
+        </Button>
+
+        <Button variant="contained" color="warning" onClick={onCancel}>
+          Cancel
+        </Button>
       </div>
-    </form>
+    </Box>
   );
 };
 
