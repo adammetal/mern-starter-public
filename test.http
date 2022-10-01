@@ -1,7 +1,7 @@
-GET http://localhost:8080/employees/
+GET http://localhost:8080/api/employees/
 
 ###
-POST http://localhost:8080/employees/
+POST http://localhost:8080/api/employees/
 Content-Type: application/json
 
 {
@@ -11,12 +11,13 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/employees/6332ccb3b37ae77f5b12a1b5
+DELETE http://localhost:8080/api/employees/63389df3cbc433ed9ba2fc2ss
 
 ###
-PATCH http://localhost:8080/employees/6332cd97d8efbe310173ad4c
+PATCH http://localhost:8080/api/employees/63389e02cbc433ed9ba2fc27
 Content-Type:  application/json
 
 {
-  "level": "Super Expert"
+  "level": "Super Expert",
+  "foo": "bar"
 }
