@@ -1,5 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+
 import Loading from "../Components/Loading";
 
 const fetchEmployees = () => {
@@ -51,34 +65,53 @@ const EmployeeList = () => {
   }
 
   return (
-    <div>
-      <Link to="/create">Create employee</Link>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Level</th>
-            <th>Position</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((employee) => (
-            <tr key={employee._id}>
-              <td>{employee.name}</td>
-              <td>{employee.level}</td>
-              <td>{employee.position}</td>
-              <td>
-                <Link to={`/update/${employee._id}`}>Update</Link>
-                <button onClick={() => handleDelete(employee._id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Employees
+          </Typography>
+          <Link to="/create">
+            <Button variant="contained" color="secondary">Create Employee</Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
+
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="left">Level</TableCell>
+              <TableCell align="left">Position</TableCell>
+              <TableCell align="left">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((employee) => (
+              <TableRow key={employee._id}>
+                <TableCell align="left">{employee.name}</TableCell>
+                <TableCell align="left">{employee.level}</TableCell>
+                <TableCell align="left">{employee.position}</TableCell>
+                <TableCell align="left">
+                  <Link to={`/update/${employee._id}`}>
+                    <Button variant="outlined">Update</Button>
+                  </Link>
+                  <Button
+                    startIcon={<DeleteIcon />}
+                    variant="outlined"
+                    color="warning"
+                    onClick={() => handleDelete(employee._id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 };
 

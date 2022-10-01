@@ -1,31 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider
-} from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
-import EmployeeList from './Pages/EmployeeList';
-import EmployeeCreator from './Pages/EmployeeCreator';
-import EmployeeUpdater from './Pages/EmployeeUpdater';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import CssBaseLine from '@mui/material/CssBaseline'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import './index.css';
+
+import reportWebVitals from "./reportWebVitals";
+import EmployeeList from "./Pages/EmployeeList";
+import EmployeeCreator from "./Pages/EmployeeCreator";
+import EmployeeUpdater from "./Pages/EmployeeUpdater";
+
+import "./index.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 const router = createBrowserRouter([
   {
-    path: '/', element: <EmployeeList />
+    path: "/",
+    element: <EmployeeList />,
   },
   {
-    path: '/create', element: <EmployeeCreator />
+    path: "/create",
+    element: <EmployeeCreator />,
   },
   {
-    path: '/update/:id', element: <EmployeeUpdater />
+    path: "/update/:id",
+    element: <EmployeeUpdater />,
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <CssBaseLine enableColorScheme />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
