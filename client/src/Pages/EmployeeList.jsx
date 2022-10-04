@@ -1,23 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-
 import Loading from "../Components/Loading";
+import EmployeeTable from "../Components/EmployeeTable";
 
-const fetchEmployees = () => {
-  return fetch("/api/employees").then((res) => res.json());
+const fetchEmployees = (signal) => {
+  return fetch("/api/employees", { signal }).then((res) => res.json());
 };
 
 const deleteEmployee = (id) => {
@@ -41,79 +27,30 @@ const EmployeeList = () => {
   };
 
   useEffect(() => {
+    const controller = new AbortController();
 
-    fetchEmployees()
+    fetchEmployees(controller.signal)
       .then((employees) => {
         setData(employees);
       })
       .catch((error) => {
-        setData(null);
-        throw error;
+        if (error.name !== "AbortError") {
+          setData(null);
+          throw error;
+        }
       })
       .finally(() => {
         setLoading(false);
       });
+
+    return () => controller.abort();
   }, []);
 
   if (loading) {
     return <Loading />;
   }
 
-  if (!data || !data.length || !Array.isArray(data)) {
-    return <h1>No employees yet</h1>;
-  }
-
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Employees
-          </Typography>
-          <Link to="/create">
-            <Button variant="contained" color="secondary">
-              Create Employee
-            </Button>
-          </Link>
-        </Toolbar>
-      </AppBar>
-
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">Name</TableCell>
-              <TableCell align="left">Level</TableCell>
-              <TableCell align="left">Position</TableCell>
-              <TableCell align="left">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((employee) => (
-              <TableRow key={employee._id}>
-                <TableCell align="left">{employee.name}</TableCell>
-                <TableCell align="left">{employee.level}</TableCell>
-                <TableCell align="left">{employee.position}</TableCell>
-                <TableCell align="left">
-                  <Link to={`/update/${employee._id}`}>
-                    <Button variant="outlined">Update</Button>
-                  </Link>
-                  <Button
-                    startIcon={<DeleteIcon />}
-                    variant="outlined"
-                    color="warning"
-                    onClick={() => handleDelete(employee._id)}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
-  );
+  return <EmployeeTable employees={data} onDelete={handleDelete} />;
 };
 
 export default EmployeeList;
