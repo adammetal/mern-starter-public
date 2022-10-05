@@ -35,7 +35,7 @@ employeesRouter.post("/", async (req, res, next) => {
   try {
     const saved = await EmployeeModel.create(employee);
     return res.json(saved);
-  } catch {
+  } catch (err) {
     return next(err);
   }
 });
@@ -46,7 +46,7 @@ employeesRouter.patch("/:id", async (req, res, next) => {
   try {
     const updated = await req.employee.set(employee).save();
     return res.json(updated);
-  } catch {
+  } catch (err) {
     return next(err);
   }
 });
@@ -55,7 +55,7 @@ employeesRouter.delete("/:id", async (req, res, next) => {
   try {
     const deleted = await req.employee.delete();
     return res.json(deleted);
-  } catch {
+  } catch (err) {
     return next(err);
   }
 });

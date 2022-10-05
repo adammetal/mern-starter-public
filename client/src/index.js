@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import CssBaseLine from '@mui/material/CssBaseline'
+import CssBaseLine from "@mui/material/CssBaseline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 
 import reportWebVitals from "./reportWebVitals";
 import EmployeeList from "./Pages/EmployeeList";

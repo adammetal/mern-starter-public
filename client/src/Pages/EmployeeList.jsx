@@ -28,7 +28,6 @@ const deleteEmployee = (id) => {
 
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
   const handleDelete = (id) => {
@@ -42,17 +41,17 @@ const EmployeeList = () => {
   };
 
   useEffect(() => {
+
     fetchEmployees()
       .then((employees) => {
         setData(employees);
-        setLoading(false);
-        setError(null);
       })
       .catch((error) => {
         setData(null);
+        throw error;
+      })
+      .finally(() => {
         setLoading(false);
-        setError(error);
-        console.log(error);
       });
   }, []);
 
@@ -72,7 +71,9 @@ const EmployeeList = () => {
             Employees
           </Typography>
           <Link to="/create">
-            <Button variant="contained" color="secondary">Create Employee</Button>
+            <Button variant="contained" color="secondary">
+              Create Employee
+            </Button>
           </Link>
         </Toolbar>
       </AppBar>

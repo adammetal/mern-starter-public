@@ -1,5 +1,10 @@
-import "./Loading.css";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 
-const Loading = () => <div className="loader">Loading...</div>;
+const Loading = () => (
+  <Box sx={{ width: "100%" }}>
+    <LinearProgress />
+  </Box>
+);
 
 export default Loading;
