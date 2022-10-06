@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const EmployeeModel = require("../db/employee.model");
-// const Router = require('express').Router;
 
 const employeesRouter = new Router();
 
@@ -9,21 +8,20 @@ employeesRouter.use("/:id", async (req, res, next) => {
 
   try {
     employee = await EmployeeModel.findById(req.params.id);
+
+    if (!employee) {
+      return res.status(404).end("Employee not found");
+    }
   } catch {
     return res.status(400).end("Bad request");
   }
 
-  if (!employee) {
-    return res.status(404).end("Not found");
-  }
-
   req.employee = employee;
-
   next();
 });
 
 employeesRouter.get("/", async (req, res) => {
-  const employees = await EmployeeModel.find();
+  const employees = await EmployeeModel.find().sort({ created: "desc" });
   return res.json(employees);
 });
 
@@ -31,34 +29,34 @@ employeesRouter.get("/:id", (req, res) => {
   return res.json(req.employee);
 });
 
-employeesRouter.post("/", async (req, res) => {
+employeesRouter.post("/", async (req, res, next) => {
   const employee = req.body;
 
   try {
     const saved = await EmployeeModel.create(employee);
     return res.json(saved);
-  } catch {
-    return res.status(400).end("Bad Request");
+  } catch (err) {
+    return next(err);
   }
 });
 
-employeesRouter.patch("/:id", async (req, res) => {
+employeesRouter.patch("/:id", async (req, res, next) => {
   const employee = req.body;
 
   try {
     const updated = await req.employee.set(employee).save();
     return res.json(updated);
-  } catch {
-    return res.status(400).end("Bad request");
+  } catch (err) {
+    return next(err);
   }
 });
 
-employeesRouter.delete("/:id", async (req, res) => {
+employeesRouter.delete("/:id", async (req, res, next) => {
   try {
     const deleted = await req.employee.delete();
     return res.json(deleted);
-  } catch {
-    return res.status(400).end("Bad request");
+  } catch (err) {
+    return next(err);
   }
 });
 

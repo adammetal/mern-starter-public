@@ -1,31 +1,47 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider
-} from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
-import Employees from './Employees';
-import EmployeeCreator from './EmployeeCreator';
-import EmployeeUpdater from './EmployeeUpdater';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import CssBaseLine from "@mui/material/CssBaseline";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import './index.css';
+import reportWebVitals from "./reportWebVitals";
+import EmployeeList from "./Pages/EmployeeList";
+import EmployeeCreator from "./Pages/EmployeeCreator";
+import EmployeeUpdater from "./Pages/EmployeeUpdater";
+
+import "./index.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import Layout from "./Pages/Layout";
+import ErrorPage from "./Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
-    path: '/', element: <Employees />
-  },
-  {
-    path: '/create', element: <EmployeeCreator />
-  },
-  {
-    path: '/update/:id', element: <EmployeeUpdater />
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <EmployeeList />,
+      },
+      {
+        path: "/create",
+        element: <EmployeeCreator />,
+      },
+      {
+        path: "/update/:id",
+        element: <EmployeeUpdater />,
+      },
+    ],
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <CssBaseLine enableColorScheme />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
