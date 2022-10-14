@@ -31,6 +31,7 @@ const EmployeeList = () => {
 
     fetchEmployees(controller.signal)
       .then((employees) => {
+        setLoading(false);
         setData(employees);
       })
       .catch((error) => {
@@ -39,9 +40,6 @@ const EmployeeList = () => {
           throw error;
         }
       })
-      .finally(() => {
-        setLoading(false);
-      });
 
     return () => controller.abort();
   }, []);
