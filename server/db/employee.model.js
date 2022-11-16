@@ -7,6 +7,12 @@ const EmployeeSchema = new Schema({
   name: String,
   level: String,
   position: String,
+  cats: [{
+    age: Number,
+    img: String,
+    name: String,
+    gender: String,
+  }],
   created: {
     type: Date,
     default: Date.now,

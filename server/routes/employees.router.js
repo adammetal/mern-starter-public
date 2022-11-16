@@ -20,6 +20,16 @@ employeesRouter.use("/:id", async (req, res, next) => {
   next();
 });
 
+employeesRouter.post('/:id/cat', async (req, res, next) => {
+  const cat = req.body;
+
+  const employee = await EmployeeModel.findById(req.params.id);
+  employee.cats.push(cat);
+
+  await employee.save();
+  return res.json(employee);
+});
+
 employeesRouter.get("/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });
   return res.json(employees);
