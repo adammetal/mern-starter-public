@@ -9,22 +9,24 @@ import TableRow from "@mui/material/TableRow";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Paper from "@mui/material/Paper";
 
-const EmployeeTable = ({ employees, onDelete }) => (
+const EmployeeTable = ({ employees, onDelete, onSort, order }) => (
   <TableContainer component={Paper}>
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell align="left">Name</TableCell>
-          <TableCell align="left">Level</TableCell>
-          <TableCell align="left">Position</TableCell>
-          <TableCell align="left"></TableCell>
+          <TableCell sx={{ textDecoration: order === 'name' ? 'underline' : 'none' }} align="left" onClick={() => onSort('name')}>Name</TableCell>
+          <TableCell align="left" onClick={() => onSort('codRank')}>Cod Rank</TableCell>
+          <TableCell align="left" onClick={() => onSort('level')}>Level</TableCell>
+          <TableCell align="left" onClick={() => onSort('position')}>Position</TableCell>
+          <TableCell align="left" />
         </TableRow>
       </TableHead>
       <TableBody>
-        {employees && employees.length
+        {employees?.length
           ? employees.map((employee) => (
               <TableRow key={employee._id}>
                 <TableCell align="left">{employee.name}</TableCell>
+                <TableCell align="left">{employee.codRank}</TableCell>
                 <TableCell align="left">{employee.level}</TableCell>
                 <TableCell align="left">{employee.position}</TableCell>
                 <TableCell align="left">

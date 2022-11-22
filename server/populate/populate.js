@@ -15,6 +15,10 @@ if (!mongoUrl) {
   process.exit(1); // exit the current program
 }
 
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 const pick = (from) => from[Math.floor(Math.random() * (from.length - 0))];
 
 const populateEmployees = async () => {
@@ -22,6 +26,7 @@ const populateEmployees = async () => {
 
   const employees = names.map((name) => ({
     name,
+    codRank: random(1, 10),
     level: pick(levels),
     position: pick(positions),
   }));
