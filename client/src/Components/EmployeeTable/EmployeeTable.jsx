@@ -1,51 +1,36 @@
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Paper from "@mui/material/Paper";
+import "./EmployeeTable.css";
 
 const EmployeeTable = ({ employees, onDelete }) => (
-  <TableContainer component={Paper}>
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell align="left">Name</TableCell>
-          <TableCell align="left">Level</TableCell>
-          <TableCell align="left">Position</TableCell>
-          <TableCell align="left"></TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {employees && employees.length
-          ? employees.map((employee) => (
-              <TableRow key={employee._id}>
-                <TableCell align="left">{employee.name}</TableCell>
-                <TableCell align="left">{employee.level}</TableCell>
-                <TableCell align="left">{employee.position}</TableCell>
-                <TableCell align="left">
-                  <Link to={`/update/${employee._id}`}>
-                    <Button variant="outlined">Update</Button>
-                  </Link>
-                  <Button
-                    onClick={() => onDelete(employee._id)}
-                    startIcon={<DeleteIcon />}
-                    variant="outlined"
-                    color="warning"
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))
-          : null}
-      </TableBody>
-    </Table>
-  </TableContainer>
+	<div className="EmployeeTable">
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Level</th>
+					<th>Position</th>
+					<th />
+				</tr>
+			</thead>
+			<tbody>
+				{employees.map((employee) => (
+					<tr key={employee._id}>
+						<td>{employee.name}</td>
+						<td>{employee.level}</td>
+						<td>{employee.position}</td>
+						<td>
+							<Link to={`/update/${employee._id}`}>
+								<button type="button">Update</button>
+							</Link>
+							<button type="button" onClick={() => onDelete(employee._id)}>
+								Delete
+							</button>
+						</td>
+					</tr>
+				))}
+			</tbody>
+		</table>
+	</div>
 );
 
 export default EmployeeTable;
