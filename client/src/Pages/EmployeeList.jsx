@@ -39,7 +39,7 @@ const EmployeeList = () => {
           setData(null);
           throw error;
         }
-      })
+      });
 
     return () => controller.abort();
   }, []);

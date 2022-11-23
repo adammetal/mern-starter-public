@@ -13,6 +13,6 @@ const ErrorPage = () => {
       </p>
     </div>
   );
-}
+};
 
 export default ErrorPage;
