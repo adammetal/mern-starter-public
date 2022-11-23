@@ -12,7 +12,6 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
-
 button {
   padding: .2rem 1rem;
   margin: .1rem;
@@ -32,6 +31,71 @@ button:hover {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.EmployeeTable {
+  padding: 0.5rem;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+table tbody tr {
+  background-color: rgb(198, 218, 255);
+}
+
+table tbody tr:nth-child(even) {
+  background-color: rgb(219, 230, 255);
+}
+
+table td,
+table th {
+  padding: 0.2rem;
+}
+
+table button {
+  padding: .2rem 1rem;
+  margin: .1rem;
+}
+
+form {
+  display: grid;
+  font-size: 1.2rem;
+}
+
+form .control {
+  width: 100%;
+  padding: 1rem;
+  display: grid;
+  gap: .2rem;
+}
+
+form .buttons {
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+
+form .control input,
+form .control select {
+  font-size: 1.2rem;
+  padding: .2rem;
+}
+
+form .control .checkbox,
+form .control .radio {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  padding: .2rem;
+  cursor: pointer;
+}
+
+form button {
+  padding: .7rem 1.7rem;
+  margin-right: 1rem;
 }
 
 .grow {
