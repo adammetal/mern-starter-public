@@ -19,7 +19,7 @@ app.use("/api/employees/:id", async (req, res, next) => {
 
   try {
     employee = await EmployeeModel.findById(req.params.id);
-  } catch(err) {
+  } catch (err) {
     return next(err);
   }
 
