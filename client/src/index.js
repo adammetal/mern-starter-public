@@ -1,20 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import CssBaseLine from "@mui/material/CssBaseline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import reportWebVitals from "./reportWebVitals";
+
+import Layout from "./Pages/Layout";
+import ErrorPage from "./Pages/ErrorPage";
 import EmployeeList from "./Pages/EmployeeList";
 import EmployeeCreator from "./Pages/EmployeeCreator";
 import EmployeeUpdater from "./Pages/EmployeeUpdater";
 
 import "./index.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-import Layout from "./Pages/Layout";
-import ErrorPage from "./Pages/ErrorPage";
+import TableTest from "./Pages/TableTest";
+import FormTest from "./Pages/FormTest";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +31,14 @@ const router = createBrowserRouter([
         path: "/update/:id",
         element: <EmployeeUpdater />,
       },
+      {
+        path: "/table-test",
+        element: <TableTest />,
+      },
+      {
+        path: "/form-test",
+        element: <FormTest />,
+      },
     ],
   },
 ]);
@@ -41,7 +46,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CssBaseLine enableColorScheme />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
