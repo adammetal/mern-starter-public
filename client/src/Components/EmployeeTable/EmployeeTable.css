@@ -1,5 +1,5 @@
 .EmployeeTable {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .EmployeeTable table {
@@ -9,27 +9,19 @@
 }
 
 .EmployeeTable tbody tr {
-  background-color: rgb(198, 198, 255);
+  background-color: rgb(198, 218, 255);
 }
 
 .EmployeeTable tbody tr:nth-child(even) {
-  background-color: rgb(123, 123, 251);
+  background-color: rgb(219, 230, 255);
 }
 
 .EmployeeTable td,
 .EmployeeTable th {
-  padding: 1rem;
+  padding: 0.2rem;
 }
 
 .EmployeeTable button {
-  padding: .7rem 1.7rem;
-  margin: .2rem;
-  font-weight: bold;
-  color: black;
-  text-transform: uppercase;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0px 0px 5px black;
+  padding: .2rem 1rem;
+  margin: .1rem;
 }

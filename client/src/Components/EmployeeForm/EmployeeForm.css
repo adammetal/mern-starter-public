@@ -24,12 +24,4 @@
 .EmployeeForm button {
   padding: .7rem 1.7rem;
   margin-right: 1rem;
-  font-weight: bold;
-  color: black;
-  text-transform: uppercase;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0px 0px 5px black;
 }
