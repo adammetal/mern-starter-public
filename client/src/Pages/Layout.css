@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   padding: .5rem;
-  background-color: rgb(19, 47, 223);
+  background-color: rgb(76, 117, 219);
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
@@ -14,11 +14,8 @@
 .Layout nav button {
   padding: .7rem 1.7rem;
   font-weight: bold;
-  color: black;
-  text-transform: uppercase;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0px 0px 5px black;
+}
+
+.Layout nav button:hover {
+  box-shadow: 0px 0px 5px rgb(255, 255, 255);
 }

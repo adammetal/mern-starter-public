@@ -9,7 +9,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(160, 160, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+
+button {
+  padding: .2rem 1rem;
+  margin: .1rem;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+  outline: rgb(99, 151, 254);
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: white;
+}
+
+button:hover {
+  border-color: rgb(99, 151, 254);
 }
 
 a {
