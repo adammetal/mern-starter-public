@@ -1,3 +1,5 @@
+import "./EmployeeForm.css";
+
 const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -16,7 +18,6 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 	return (
 		<form
 			className="EmployeeForm"
-			sx={{ margin: "2rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}
 			onSubmit={onSubmit}
 		>
 			{employee && (
@@ -50,7 +51,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 				/>
 			</div>
 
-			<div>
+			<div className="buttons">
 				<button type="submit" disabled={disabled}>
 					{employee ? "Update Employee" : "Create Employee"}
 				</button>
