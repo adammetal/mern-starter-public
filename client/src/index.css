@@ -66,26 +66,26 @@ form {
   font-size: 1.2rem;
 }
 
-form .control {
+.control {
   width: 100%;
   padding: 1rem;
   display: grid;
   gap: 0.2rem;
 }
 
-form .buttons {
+.buttons {
   font-size: 1.2rem;
   padding: 1rem;
 }
 
-form .control input,
-form .control select {
+.control input,
+.control select {
   font-size: 1.2rem;
   padding: 0.2rem;
 }
 
-form .control .checkbox,
-form .control .radio {
+.control .checkbox,
+.control .radio {
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -93,7 +93,7 @@ form .control .radio {
   cursor: pointer;
 }
 
-form button {
+button {
   padding: 0.7rem 1.7rem;
   margin-right: 1rem;
 }
