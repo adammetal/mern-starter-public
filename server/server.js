@@ -11,33 +11,16 @@ if (!MONGO_URL) {
 }
 
 const app = express();
-
 app.use(express.json());
-
-app.use("/api/employees/:id", async (req, res, next) => {
-  let employee = null;
-
-  try {
-    employee = await EmployeeModel.findById(req.params.id);
-  } catch (err) {
-    return next(err);
-  }
-
-  if (!employee) {
-    return res.status(404).end("Employee not found");
-  }
-
-  req.employee = employee;
-  next();
-});
 
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });
   return res.json(employees);
 });
 
-app.get("/api/employees/:id", (req, res) => {
-  return res.json(req.employee);
+app.get("/api/employees/:id", async (req, res) => {
+  const employee = await EmployeeModel.findById(req.params.id);
+  return res.json(employee);
 });
 
 app.post("/api/employees/", async (req, res, next) => {
@@ -52,10 +35,9 @@ app.post("/api/employees/", async (req, res, next) => {
 });
 
 app.patch("/api/employees/:id", async (req, res, next) => {
-  const employee = req.body;
-
   try {
-    const updated = await req.employee.set(employee).save();
+    const employee = await EmployeeModel.findById(req.params.id);
+    const updated = await employee.set(req.body).save();
     return res.json(updated);
   } catch (err) {
     return next(err);
@@ -64,7 +46,8 @@ app.patch("/api/employees/:id", async (req, res, next) => {
 
 app.delete("/api/employees/:id", async (req, res, next) => {
   try {
-    const deleted = await req.employee.delete();
+    const employee = await EmployeeModel.findById(req.params.id);
+    const deleted = await employee.delete();
     return res.json(deleted);
   } catch (err) {
     return next(err);
