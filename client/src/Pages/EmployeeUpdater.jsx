@@ -32,9 +32,6 @@ const EmployeeUpdater = () => {
       .then((employee) => {
         setEmployee(employee);
         setEmployeeLoading(false);
-      })
-      .catch((error) => {
-        throw error;
       });
   }, [id]);
 
@@ -42,13 +39,8 @@ const EmployeeUpdater = () => {
     setUpdateLoading(true);
     updateEmployee(employee)
       .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        throw error;
-      })
-      .finally(() => {
         setUpdateLoading(false);
+        navigate("/");
       });
   };
 
