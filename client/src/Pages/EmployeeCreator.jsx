@@ -21,14 +21,9 @@ const EmployeeCreator = () => {
 
     createEmployee(employee)
       .then(() => {
+        setLoading(false);
         navigate("/");
       })
-      .catch((err) => {
-        throw err;
-      })
-      .finally(() => {
-        setLoading(false);
-      });
   };
 
   return (
