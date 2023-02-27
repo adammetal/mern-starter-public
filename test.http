@@ -11,12 +11,12 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/api/employees/637e22ce74045fd928489109
+DELETE http://localhost:8080/api/employees/63fc6e4bca1cb463caa21779
 
 ###
-PATCH http://localhost:8080/api/employees/637e22ce74045fd928489109
+PATCH http://localhost:8080/api/employees/63fc6e4bca1cb463caa21779
 Content-Type:  application/json
 
 {
-  "name": "Adam"
+  "name": "asd"
 }

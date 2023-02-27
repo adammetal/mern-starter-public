@@ -36,9 +36,12 @@ app.post("/api/employees/", async (req, res, next) => {
 
 app.patch("/api/employees/:id", async (req, res, next) => {
   try {
-    const employee = await EmployeeModel.findById(req.params.id);
-    const updated = await employee.set(req.body).save();
-    return res.json(updated);
+    const employee = await EmployeeModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { ...req.body } },
+      { new: true }
+    );
+    return res.json(employee);
   } catch (err) {
     return next(err);
   }
