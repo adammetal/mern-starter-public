@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import EmployeeEquipments from "../Components/EmployeeEquipments";
 import EmployeeForm from "../Components/EmployeeForm";
 import Loading from "../Components/Loading";
 
@@ -49,12 +50,15 @@ const EmployeeUpdater = () => {
   }
 
   return (
-    <EmployeeForm
-      employee={employee}
-      onSave={handleUpdateEmployee}
-      disabled={updateLoading}
-      onCancel={() => navigate("/")}
-    />
+    <>
+      <EmployeeForm
+        employee={employee}
+        onSave={handleUpdateEmployee}
+        disabled={updateLoading}
+        onCancel={() => navigate("/")}
+      />
+      <EmployeeEquipments employeeId={id} />
+    </>
   );
 };
 

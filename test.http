@@ -1,4 +1,15 @@
-GET http://localhost:8080/api/employees/
+GET http://localhost:8080/api/employees/63bd59c2ed10eb9eab30be31/equipments/
+
+###
+POST http://localhost:8080/api/equipments/
+Content-Type: application/json
+
+{
+  "name": "IPhone X",
+  "type": "Phone",
+  "price": 8000,
+  "employee": "63bd59c2ed10eb9eab30be31"
+}
 
 ###
 POST http://localhost:8080/api/employees/
