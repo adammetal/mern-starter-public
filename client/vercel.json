@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "https://mern-starter-public.vercel.app/api" }
+    { "source": "/api/(.*)", "destination": "https://mern-starter-public.vercel.app" }
   ]
 }
