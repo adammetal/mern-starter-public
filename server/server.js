@@ -1,8 +1,22 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const EmployeeModel = require("./db/employee.model");
 
+const { MONGO_URL } = process.env;
+
 const app = express();
 app.use(express.json());
+
+let connection;
+
+app.use(async (req, res, next) => {
+  if (connection === true) {
+    return next();
+  }
+  await mongoose.connect(MONGO_URL);
+  connection = true;
+  next();
+})
 
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });
