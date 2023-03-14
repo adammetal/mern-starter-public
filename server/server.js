@@ -13,6 +13,7 @@ app.use(async (req, res, next) => {
   if (connection === true) {
     return next();
   }
+  console.log('connecting to ', MONGO_URL);
   await mongoose.connect(MONGO_URL);
   connection = true;
   next();
