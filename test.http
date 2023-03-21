@@ -1,13 +1,13 @@
 GET http://localhost:8080/api/employees/
 
 ###
-POST http://localhost:8080/api/employees/
+POST http://localhost:8080/api/employees/641068af72d6d2a205c712e4/kittens
 Content-Type: application/json
 
 {
-  "name": "Valaki",
-  "level": "Godlike",
-  "position": "Joker"
+  "name": "Jordin",
+  "img": "https://cdn2.thecatapi.com/images/ad1.jpg",
+  "age": 5
 }
 
 ###

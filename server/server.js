@@ -63,4 +63,16 @@ app.delete("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+app.get('/api/employees/:id/kittens', async (req, res, next) => {
+  const { kittens }  = await EmployeeModel.findById(req.params.id);
+  res.json(kittens);
+});
+
+app.post('/api/employees/:id/kittens', async (req, res, next) => {
+  const employee = await EmployeeModel.findById(req.params.id);
+  employee.kittens.push(req.body);
+  await employee.save();
+  res.json(employee.kittens.at(-1));
+});
+
 module.exports = app;
